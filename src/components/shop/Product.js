@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-function Product({ product }) {
+function Product({ product, increment, decrement }) {
     const { id, title, price, image, quantity } = product;
 
     return (
@@ -14,9 +14,9 @@ function Product({ product }) {
                 <h3>${price}</h3>
             </Info>
             <AmountSelector>
-                <Button>-</Button>
+                <Button onClick={() => decrement(id)}>-</Button>
                 <Amount>{quantity}</Amount>
-                <Button>+</Button>
+                <Button onClick={() => increment(id)}>+</Button>
             </AmountSelector>
             <AddButton>Add to cart</AddButton>
         </ProductContainer>

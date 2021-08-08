@@ -20,11 +20,38 @@ function Shop() {
         setShopProducts(products);
     };
 
+    const incrementQuantity = (id) => {
+        const newProducts = shopProducts.map((product) => {
+            if (product.id === id) {
+                product.quantity += 1;
+            }
+            return product;
+        });
+        setShopProducts(newProducts);
+    };
+
+    const decrementQuantity = (id) => {
+        const newProducts = shopProducts.map((product) => {
+            if (product.id === id && product.quantity > 0) {
+                product.quantity -= 1;
+            }
+            return product;
+        });
+        setShopProducts(newProducts);
+    };
+
     return (
         <ShopContainer>
             <Wrapper>
                 {shopProducts.map((product) => {
-                    return <Product key={product.id} product={product} />;
+                    return (
+                        <Product
+                            key={product.id}
+                            product={product}
+                            increment={incrementQuantity}
+                            decrement={decrementQuantity}
+                        />
+                    );
                 })}
             </Wrapper>
         </ShopContainer>
