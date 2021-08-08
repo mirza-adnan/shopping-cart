@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Product from "./Product";
 
 function Shop() {
-    const [shopItems, setShopItems] = useState([]);
+    const [shopProducts, setShopProducts] = useState([]);
 
     useEffect(() => {
         fetchItems();
@@ -14,22 +14,17 @@ function Shop() {
             "https://fakestoreapi.com/products/category/women's clothing?";
         const response = await fetch(url, { mode: "cors" });
         const data = await response.json();
-        setShopItems(data);
+        const products = data.map((product) => {
+            return { ...product, quantity: 0 };
+        });
+        setShopProducts(products);
     };
 
     return (
         <ShopContainer>
             <Wrapper>
-                {shopItems.map((item) => {
-                    return (
-                        <Product
-                            key={item.id}
-                            id={item.id}
-                            title={item.title}
-                            image={item.image}
-                            price={item.price}
-                        />
-                    );
+                {shopProducts.map((product) => {
+                    return <Product key={product.id} product={product} />;
                 })}
             </Wrapper>
         </ShopContainer>
