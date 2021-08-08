@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import cart from "./assets/img/shopping-cart.png";
 
-function Header() {
+function Header({ openCart }) {
     return (
         <HeaderContainer>
             <h1>StyleU</h1>
@@ -19,7 +19,7 @@ function Header() {
                         <Link to="/contact">Contact</Link>
                     </li>
                     <li>
-                        <CartButton>
+                        <CartButton onClick={openCart}>
                             <img src={cart} alt="" />
                             <CartCount>1</CartCount>
                         </CartButton>
