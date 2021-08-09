@@ -8,6 +8,7 @@ function Cart({
     removeFromCart,
     incrementQuantity,
     decrementQuantity,
+    emptyCart,
 }) {
     const backgroundRef = useRef();
 
@@ -17,9 +18,23 @@ function Cart({
         }
     };
 
+    const totalPrice = cartItems.reduce((sum, item) => {
+        return sum + item.price * item.quantity;
+    }, 0);
+
     return (
         <Background ref={backgroundRef} onClick={closeCart}>
             <CartContainer>
+                {cartItems.length > 0 ? (
+                    <Wrapper>
+                        <h2>Total: {totalPrice.toFixed(2)}$</h2>
+                        <Buttons>
+                            <Button onClick={emptyCart}>Checkout</Button>
+                            <Button onClick={emptyCart}>Clear Cart</Button>
+                        </Buttons>
+                    </Wrapper>
+                ) : null}
+
                 {cartItems.length > 0 ? (
                     cartItems.map((item) => {
                         return (
@@ -40,10 +55,16 @@ function Cart({
     );
 }
 
-const CartContainer = styled.div`
+const Background = styled.div`
     position: fixed;
-    top: 0;
-    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: flex-end;
+`;
+
+const CartContainer = styled.div`
     width: 70%;
     max-width: 500px;
     height: 100%;
@@ -54,11 +75,37 @@ const CartContainer = styled.div`
     text-align: center;
 `;
 
-const Background = styled.div`
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+const Wrapper = styled.div`
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    margin-bottom: 1rem;
+`;
+
+const Buttons = styled.div`
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem 0;
+    padding: 0.5rem 0;
+`;
+
+const Button = styled.button`
+    outline: none;
+    border: none;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 1.1rem;
+    padding: 0.7rem 1rem;
+    cursor: pointer;
+    border: 1px solid rgba(32, 33, 36, 0.28);
+    box-shadow: 0 1px 3px rgb(32 33 36 / 28%);
+    background-color: var(--clr-text);
+    color: var(--clr-primary);
+    transition: all 0.2s ease;
+
+    &:hover {
+        background-color: var(--clr-primary);
+        color: var(--clr-text);
+    }
 `;
 
 export default Cart;

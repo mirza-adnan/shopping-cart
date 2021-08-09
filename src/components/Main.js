@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import styled from "styled-components";
 import Cart from "./Cart";
@@ -9,7 +9,10 @@ import Shop from "./shop/Shop";
 function Main() {
     const [showCart, setShowCart] = useState(false);
     const [cartItems, setCartItems] = useState([]);
-    const [cartCount, setCartCount] = useState(0);
+
+    const cartCount = cartItems.reduce((total, item) => {
+        return total + item.quantity;
+    }, 0);
 
     const openCart = () => {
         setShowCart(true);
@@ -28,13 +31,6 @@ function Main() {
         setCartItems(newItems);
     };
 
-    const updateCartCount = () => {
-        const count = cartItems.reduce((total, item) => {
-            return total + item.quantity;
-        }, 0);
-        setCartCount(count);
-    };
-
     const incrementCartQuantity = (id) => {
         const newItems = cartItems.map((item) => {
             if (item.id === id) {
@@ -50,16 +46,14 @@ function Main() {
             if (item.id === id && item.quantity > 0) {
                 item.quantity -= 1;
             }
-            if (item.quantity !== 0) {
-                return item;
-            }
+            return item.quantity !== 0;
         });
         setCartItems(newItems);
     };
 
-    useEffect(() => {
-        updateCartCount();
-    }, [cartItems]);
+    const emptyCart = () => {
+        setCartItems([]);
+    };
 
     return (
         <Container>
@@ -81,6 +75,7 @@ function Main() {
                     removeFromCart={removeFromCart}
                     incrementQuantity={incrementCartQuantity}
                     decrementQuantity={decrementCartQuantity}
+                    emptyCart={emptyCart}
                 />
             ) : null}
         </Container>
