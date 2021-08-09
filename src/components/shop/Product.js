@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-function Product({ product, increment, decrement }) {
+function Product({ product, increment, decrement, handleAdd }) {
     const { id, title, price, image, quantity } = product;
 
     return (
@@ -18,7 +18,9 @@ function Product({ product, increment, decrement }) {
                 <Amount>{quantity}</Amount>
                 <Button onClick={() => increment(id)}>+</Button>
             </AmountSelector>
-            <AddButton>Add to cart</AddButton>
+            <AddButton onClick={() => handleAdd(product)}>
+                Add to cart
+            </AddButton>
         </ProductContainer>
     );
 }

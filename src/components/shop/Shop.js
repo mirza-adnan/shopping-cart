@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Product from "./Product";
 
-function Shop() {
+function Shop({ addToCart }) {
     const [shopProducts, setShopProducts] = useState([]);
 
     useEffect(() => {
@@ -40,6 +40,17 @@ function Shop() {
         setShopProducts(newProducts);
     };
 
+    const handleAdd = (obj) => {
+        addToCart(obj);
+        const newProducts = shopProducts.map((product) => {
+            if (product.id === obj.id) {
+                product.quantity = 0;
+            }
+            return product;
+        });
+        setShopProducts(newProducts);
+    };
+
     return (
         <ShopContainer>
             <Wrapper>
@@ -50,6 +61,7 @@ function Shop() {
                             product={product}
                             increment={incrementQuantity}
                             decrement={decrementQuantity}
+                            handleAdd={handleAdd}
                         />
                     );
                 })}
