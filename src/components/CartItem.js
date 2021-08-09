@@ -1,25 +1,29 @@
 import React from "react";
 import styled from "styled-components";
 
-function CartItem() {
+function CartItem({
+    item,
+    removeFromCart,
+    incrementQuantity,
+    decrementQuantity,
+}) {
+    const { id, title, image, price, quantity } = item;
+    const totalPrice = (price * quantity).toFixed(2);
     return (
         <ItemContainer>
             <Wrapper>
                 <ItemImage>
-                    <img
-                        src="https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_.jpg"
-                        alt=""
-                    />
+                    <img src={image} alt={title} />
                 </ItemImage>
-                <p>BIYLACLESEN Women's 3-in-1 Snowboard Jacket Winter Coats</p>
-                <p>35$</p>
+                <p>{title}</p>
+                <p>{totalPrice}$</p>
                 <QuantitySelector>
-                    <Button>-</Button>
-                    <Quantity>2</Quantity>
-                    <Button>+</Button>
+                    <Button onClick={() => decrementQuantity(id)}>-</Button>
+                    <Quantity>{quantity}</Quantity>
+                    <Button onClick={() => incrementQuantity(id)}>+</Button>
                 </QuantitySelector>
             </Wrapper>
-            <Remove>
+            <Remove onClick={() => removeFromCart(id)}>
                 <i className="fas fa-times"></i>
             </Remove>
         </ItemContainer>
