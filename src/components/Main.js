@@ -5,6 +5,7 @@ import Cart from "./Cart";
 import Header from "./Header";
 import Home from "./Home";
 import Shop from "./shop/Shop";
+import Contact from "./Contact";
 
 function Main() {
     const [showCart, setShowCart] = useState(false);
@@ -66,18 +67,20 @@ function Main() {
                     <Route exact path="/shop">
                         <Shop addToCart={addToCart} />
                     </Route>
+                    <Route exact path="/contact">
+                        <Contact />
+                    </Route>
                 </Switch>
             </BrowserRouter>
-            {showCart ? (
-                <Cart
-                    setShowCart={setShowCart}
-                    cartItems={cartItems}
-                    removeFromCart={removeFromCart}
-                    incrementQuantity={incrementCartQuantity}
-                    decrementQuantity={decrementCartQuantity}
-                    emptyCart={emptyCart}
-                />
-            ) : null}
+            <Cart
+                showCart={showCart}
+                setShowCart={setShowCart}
+                cartItems={cartItems}
+                removeFromCart={removeFromCart}
+                incrementQuantity={incrementCartQuantity}
+                decrementQuantity={decrementCartQuantity}
+                emptyCart={emptyCart}
+            />
         </Container>
     );
 }

@@ -78,13 +78,24 @@ const ShopContainer = styled.main`
 `;
 
 const Wrapper = styled.div`
-    width: 90%;
+    width: 100%;
     max-width: 1100px;
     min-height: 700px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     padding: 4rem;
     grid-gap: 4rem;
+    justify-items: center;
+
+    @media only screen and (max-width: 1100px) {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 2rem;
+        gap: 2rem;
+    }
+
+    @media only screen and (max-width: 600px) {
+        grid-template-columns: 1fr;
+    }
 `;
 
 export default Shop;

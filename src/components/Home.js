@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import shopping from "./assets/img/shopping.svg";
-import wave from "./assets/img/wave.svg";
+import Wave from "./Wave";
 
 function Home() {
     return (
@@ -17,7 +17,7 @@ function Home() {
                     <img src={shopping} alt="" />
                 </HomeImage>
             </Wrapper>
-            <Wave src={wave} />
+            <Wave />
         </HomeContainer>
     );
 }
@@ -70,12 +70,6 @@ const HomeImage = styled.div`
         width: 100%;
         height: 0%;
     }
-`;
-
-const Wave = styled.img`
-    width: 100%;
-    position: absolute;
-    bottom: 0;
 `;
 
 export default Home;

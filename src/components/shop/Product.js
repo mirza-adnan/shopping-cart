@@ -10,8 +10,8 @@ function Product({ product, increment, decrement, handleAdd }) {
                 <img src={image} alt="" />
             </ImageContainer>
             <Info>
-                <h3>{title}</h3>
-                <h3>${price}</h3>
+                <p>{title}</p>
+                <p>${price}</p>
             </Info>
             <AmountSelector>
                 <Button onClick={() => decrement(id)}>-</Button>
@@ -27,6 +27,7 @@ function Product({ product, increment, decrement, handleAdd }) {
 
 const ProductContainer = styled.div`
     width: 100%;
+    max-width: 320px;
     background-color: white;
     color: var(--clr-primary);
     padding: 2rem 1.5rem;
@@ -56,6 +57,11 @@ const Info = styled.div`
     flex-direction: column;
     justify-content: space-around;
     gap: 1rem;
+
+    & p {
+        font-weight: 500;
+        font-size: 1.2rem;
+    }
 `;
 
 const AmountSelector = styled.div`

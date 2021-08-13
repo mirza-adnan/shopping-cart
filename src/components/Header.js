@@ -39,11 +39,14 @@ const HeaderContainer = styled.header`
     & h1 {
         color: var(--clr-accent);
     }
+
+    @media (max-width: 900px) {
+        flex-direction: column;
+        align-items: center;
+    }
 `;
 
-const Nav = styled.nav`
-    margin-right: 3rem;
-`;
+const Nav = styled.nav``;
 
 const UL = styled.ul`
     list-style: none;
