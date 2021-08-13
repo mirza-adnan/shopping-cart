@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Cart from "./Cart";
 import Header from "./Header";
 import Home from "./Home";
-import Shop from "./shop/Shop";
+import Shop from "./Shop";
 import Contact from "./Contact";
 
 function Main() {
