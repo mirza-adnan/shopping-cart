@@ -10,13 +10,13 @@ function Header({ openCart, cartCount }) {
             <Nav>
                 <UL>
                     <li>
-                        <Link to="/">Home</Link>
+                        <Link to="/shopping-cart">Home</Link>
                     </li>
                     <li>
-                        <Link to="/shop">Shop</Link>
+                        <Link to="/shopping-cart/shop">Shop</Link>
                     </li>
                     <li>
-                        <Link to="/contact">Contact</Link>
+                        <Link to="/shopping-cart/contact">Contact</Link>
                     </li>
                     <li>
                         <CartButton onClick={openCart}>
