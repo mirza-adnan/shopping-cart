@@ -19,7 +19,7 @@ const GlobalStyle = createGlobalStyle`
 
     body {
         height: 100%;
-        font-family: "Montserrat", sans-serif;
+        font-family: "Poppins", sans-serif;
         background-color: var(--clr-primary);
         color: var(--clr-text);
     }
