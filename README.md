@@ -4,12 +4,9 @@ A simple shopping website where a user can add products to their cart and checko
 
 ## [Live](https://mirza-adnan.github.io/shopping-cart/)
 
----
-
 ## Getting Started
 
-<pre><code>
- git clone https://github.com/mirza-adnan/shopping-cart.git
+<pre><code>git clone https://github.com/mirza-adnan/shopping-cart.git
  cd shopping-cart
  npm install
  npm start
