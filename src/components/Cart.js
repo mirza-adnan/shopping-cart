@@ -3,6 +3,7 @@ import CartItem from "./CartItem";
 import { useRef } from "react";
 
 function Cart({
+    showCart,
     setShowCart,
     cartItems,
     removeFromCart,
@@ -23,9 +24,9 @@ function Cart({
     }, 0);
 
     return (
-        <Background ref={backgroundRef} onClick={closeCart}>
-            <CartContainer>
-                {cartItems.length > 0 ? (
+        <Background ref={backgroundRef} onClick={closeCart} showCart={showCart}>
+            <CartContainer showCart={showCart}>
+                {cartItems.length ? (
                     <Wrapper>
                         <h2>Total: {totalPrice.toFixed(2)}$</h2>
                         <Buttons>
@@ -35,7 +36,7 @@ function Cart({
                     </Wrapper>
                 ) : null}
 
-                {cartItems.length > 0 ? (
+                {cartItems.length ? (
                     cartItems.map((item) => {
                         return (
                             <CartItem
@@ -57,14 +58,17 @@ function Cart({
 
 const Background = styled.div`
     position: fixed;
-    width: 100%;
+    width: ${({ showCart }) => (showCart ? "100%" : "0")};
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
-    display: flex;
-    justify-content: flex-end;
+    overflow: hidden;
+    transition: all 0.5s ease-out;
 `;
 
 const CartContainer = styled.div`
+    position: fixed;
+    top: 0;
+    right: 0;
     width: 70%;
     max-width: 500px;
     height: 100%;
@@ -73,6 +77,9 @@ const CartContainer = styled.div`
     overflow: auto;
     padding: 2rem;
     text-align: center;
+    transition: transform 0.5s ease-out;
+    transform: ${({ showCart }) =>
+        showCart ? "translateX(0)" : "translateX(100%)"};
 `;
 
 const Wrapper = styled.div`
