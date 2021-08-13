@@ -61,13 +61,13 @@ function Main() {
             <BrowserRouter>
                 <Header openCart={openCart} cartCount={cartCount} />
                 <Switch>
-                    <Route exact path="/">
+                    <Route exact path="/shopping-cart">
                         <Home />
                     </Route>
-                    <Route exact path="/shop">
+                    <Route exact path="/shopping-cart/shop">
                         <Shop addToCart={addToCart} />
                     </Route>
-                    <Route exact path="/contact">
+                    <Route exact path="/shopping-cart/contact">
                         <Contact />
                     </Route>
                 </Switch>
