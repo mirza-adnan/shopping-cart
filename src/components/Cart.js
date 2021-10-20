@@ -49,7 +49,7 @@ function Cart({
                         );
                     })
                 ) : (
-                    <h2>You cart is empty</h2>
+                    <h2>Your cart is empty</h2>
                 )}
             </CartContainer>
         </Background>
